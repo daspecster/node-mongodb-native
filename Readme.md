@@ -33,14 +33,14 @@ A simple example of inserting a document.
 
 ```javascript
   var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;    
+    , format = require('util').format;
 
   MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('test_insert');
     collection.insert({a:2}, function(err, docs) {
-      
+
       collection.count(function(err, count) {
         console.log(format("count = %s", count));
       });
@@ -50,7 +50,7 @@ A simple example of inserting a document.
         console.dir(results);
         // Let's close the db
         db.close();
-      });      
+      });
     });
   })
 ```
@@ -86,7 +86,7 @@ Here are the constructors the non-Javascript BSON primitive types:
   new mongo.Symbol(string)
   new mongo.MinKey()
   new mongo.MaxKey()
-  new mongo.Double(number)	// Force double storage
+  new mongo.Double(number)  // Force double storage
 ```
 
 The C/C++ bson parser/serializer
@@ -143,7 +143,7 @@ Simple example below
 
 ```javascript
   var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;    
+    , format = require('util').format;
 
   // Custom factory (need to provide a 12 byte array);
   CustomPKFactory = function() {}
@@ -156,11 +156,11 @@ Simple example below
     if(err) throw err;
 
     db.dropDatabase(function(err, done) {
-      
+
       db.createCollection('test_custom_key', function(err, collection) {
-        
+
         collection.insert({'a':1}, function(err, docs) {
-          
+
           collection.find({'_id':new ObjectID("aaaaaaaaaaaa")}).toArray(function(err, items) {
             console.dir(items);
             // Let's close the db
@@ -236,7 +236,7 @@ For information on how to create queries, see the
 
 ```javascript
   var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;    
+    , format = require('util').format;
 
   MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     if(err) throw err;
@@ -270,11 +270,11 @@ See also: [MongoDB docs for insert](http://www.mongodb.org/display/DOCS/Insertin
 
 ```javascript
   var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;    
+    , format = require('util').format;
 
   MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     if(err) throw err;
-    
+
     db.collection('test').insert({hello: 'world'}, {w:1}, function(err, objects) {
       if (err) console.warn(err.message);
       if (err && err.message.indexOf('E11000 ') !== -1) {
@@ -314,7 +314,7 @@ Example for `update`:
 
 ```javascript
   var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;    
+    , format = require('util').format;
 
   MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     if(err) throw err;
@@ -360,7 +360,7 @@ Example for `findAndModify`:
 
 ```javascript
   var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;    
+    , format = require('util').format;
 
   MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
     if(err) throw err;
